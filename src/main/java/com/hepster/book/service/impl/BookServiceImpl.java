@@ -19,6 +19,9 @@ public class BookServiceImpl implements BookService {
 	@Autowired
 	BookRepository bookRepository;
 
+	/**
+	 * Create book
+	 */
 	@Override
 	public void saveBook(BookDTO bookDto) {
 		Book book = new Book();
@@ -31,6 +34,12 @@ public class BookServiceImpl implements BookService {
 
 	}
 
+	/**
+	 * Get book from uuid
+	 * 
+	 * @param uuid
+	 * @return
+	 */
 	@Override
 	public Book getBook(UUID bookId) {
 		Book book = bookRepository.findByBookId(bookId);
@@ -39,6 +48,9 @@ public class BookServiceImpl implements BookService {
 
 	}
 
+	/**
+	 * Get all the Active Books
+	 */
 	@Override
 	public List<Book> getActiveBooks() {
 
@@ -47,6 +59,10 @@ public class BookServiceImpl implements BookService {
 		return activeBooks;
 	}
 
+	/**
+	 * Update bookby UUID
+	 * 
+	 */
 	@Override
 	public Book updateBook(UUID uuid, Map<String, Object> request) {
 		Book book = bookRepository.findByBookId(uuid);

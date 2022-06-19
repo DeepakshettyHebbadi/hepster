@@ -20,6 +20,10 @@ import com.hepster.book.dto.BookDTO;
 import com.hepster.book.repository.BookRepository;
 import com.hepster.book.service.impl.BookService;
 
+/**
+ * @author Deepak Shetty
+ *
+ */
 @RestController
 @RequestMapping("/book")
 public class BookController {
@@ -30,7 +34,13 @@ public class BookController {
 	@Autowired
 	BookRepository bookRepository;
 
+	/**
+	 * Create book 
+	 * @param bookDto
+	 * @return
+	 */
 	@PostMapping()
+	
 	public ResponseEntity<Void> saveBook(@RequestBody BookDTO bookDto) {
 
 		bookService.saveBook(bookDto);
@@ -38,6 +48,12 @@ public class BookController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
+	
+	/**
+	 * Get book from uuid
+	 * @param uuid
+	 * @return
+	 */
 	@GetMapping("/{uuid}")
 	public ResponseEntity<Book> getBookByUuid(@PathVariable(value = "uuid") UUID uuid) {
 
@@ -48,6 +64,9 @@ public class BookController {
 
 	}
 
+	/**
+	 * Get all the Active Books
+	 */
 	@GetMapping()
 	public ResponseEntity<List<Book>> getActiveBooks() {
 
@@ -55,6 +74,12 @@ public class BookController {
 
 	}
 
+	/**
+	 * Update bookby UUID
+	 * @param uuid
+	 * @param bookUpdateRequest
+	 * @return
+	 */
 	@PatchMapping("/{uuid}")
 	public ResponseEntity<Book> updateBookByUuid(@PathVariable(value = "uuid") UUID uuid,
 			@RequestBody Map<String, Object> bookUpdateRequest) {
